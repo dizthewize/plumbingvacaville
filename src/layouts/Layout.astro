@@ -1,0 +1,85 @@
+---
+import '../styles/globals.css';
+import EmergencyBand from '../components/EmergencyBand.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileStickyBar from '../components/MobileStickyBar.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  canonical?: string;
+  pageType?: 'website' | 'article';
+  schema?: Record<string, unknown>;
+}
+
+const {
+  title,
+  description,
+  ogTitle,
+  ogDescription,
+  canonical,
+  pageType = 'website',
+  schema,
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const siteUrl = 'https://www.vacavilleplumbing.com';
+const canonicalUrl = canonical ?? `${siteUrl}${currentPath}`;
+const ogImageUrl = `${siteUrl}/og-image.png`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Primary Meta -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={pageType} />
+    <meta property="og:title" content={ogTitle ?? title} />
+    <meta property="og:description" content={ogDescription ?? description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:site_name" content="Vacaville Plumbing" />
+
+    <!-- JSON-LD Schema (page-specific) -->
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+
+    <!-- Font preconnects -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Skip link (WCAG) -->
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+
+    <EmergencyBand />
+    <Header currentPath={currentPath} />
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <Footer />
+    <MobileStickyBar />
+  </body>
+</html>

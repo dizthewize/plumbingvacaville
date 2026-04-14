@@ -1,0 +1,54 @@
+---
+// EmergencyBand — top-of-page orange strip, visible on every page
+// Phone number always wrapped in tel: link per accessibility requirements
+---
+
+<div class="emergency-band" role="complementary" aria-label="Emergency plumbing service">
+  <div class="container emergency-band__inner">
+    <span class="emergency-band__text">
+      24/7 Emergency Service —
+      <a href="tel:9166122126" class="emergency-band__phone" aria-label="Call Vacaville Plumbing emergency line at (916) 612-2126">
+        Call (916) 612-2126
+      </a>
+    </span>
+  </div>
+</div>
+
+<style>
+  .emergency-band {
+    background: var(--color-accent);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .emergency-band__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .emergency-band__text {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .emergency-band__phone {
+    color: #ffffff;
+    text-decoration: underline;
+    margin-left: 4px;
+  }
+
+  .emergency-band__phone:hover {
+    text-decoration: none;
+    opacity: 0.9;
+  }
+</style>

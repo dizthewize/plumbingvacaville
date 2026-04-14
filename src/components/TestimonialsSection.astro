@@ -1,0 +1,168 @@
+---
+interface Testimonial {
+  quote: string;
+  name: string;
+  city: string;
+  rating?: number;
+}
+
+interface Props {
+  testimonials?: Testimonial[];
+  headline?: string;
+}
+
+// PLACEHOLDER — replace with real Google Reviews before launch
+const defaultTestimonials: Testimonial[] = [
+  {
+    quote: "Vacaville Plumbing came out same day when our water heater died. The plumber was professional, explained everything, and had it fixed in two hours. Price was exactly what he quoted.",
+    name: "Maria T.",
+    city: "Vacaville, CA",
+    rating: 5,
+  },
+  {
+    quote: "I had a stubborn drain that two other plumbers couldn't clear. They used a camera to find the real problem and fixed it right. No hidden charges, no upselling.",
+    name: "James R.",
+    city: "Fairfield, CA",
+    rating: 5,
+  },
+  {
+    quote: "Called at 11pm for a burst pipe and someone answered immediately. They walked me through shutting off the water until they arrived. Saved my floors. Can't recommend them enough.",
+    name: "Sandra K.",
+    city: "Vacaville, CA",
+    rating: 5,
+  },
+];
+
+const { testimonials = defaultTestimonials, headline = 'What Our Customers Say' } = Astro.props;
+---
+
+<section class="testimonials" aria-labelledby="testimonials-heading">
+  <div class="container">
+    <h2 id="testimonials-heading" class="testimonials__headline">{headline}</h2>
+
+    <div class="testimonials__grid">
+      {testimonials.slice(0, 3).map((t) => (
+        <article class="testimonials__card">
+          <div class="testimonials__stars" aria-label={`${t.rating ?? 5} out of 5 stars`}>
+            {'★'.repeat(t.rating ?? 5)}
+          </div>
+          <blockquote class="testimonials__quote">
+            <p>"{t.quote}"</p>
+          </blockquote>
+          <footer class="testimonials__reviewer">
+            <span class="testimonials__name">{t.name}</span>
+            <span class="testimonials__city">{t.city}</span>
+          </footer>
+        </article>
+      ))}
+    </div>
+
+    <div class="testimonials__cta">
+      <a
+        href="https://www.google.com/maps/search/vacaville+plumbing"
+        class="testimonials__reviews-link"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="See all Google reviews for Vacaville Plumbing (opens in new tab)"
+      >
+        See All Google Reviews →
+      </a>
+      <!-- TODO: Update with real Google Business Profile URL before launch -->
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    background: var(--color-bg);
+    padding: var(--space-12) 0;
+  }
+
+  .testimonials__headline {
+    text-align: center;
+    color: var(--color-primary);
+    margin-bottom: var(--space-6);
+  }
+
+  .testimonials__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  @media (min-width: 768px) {
+    .testimonials__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .testimonials__card {
+    background: var(--color-bg);
+    border: 1px solid var(--color-neutral-200);
+    border-top: 3px solid var(--color-accent);
+    border-radius: 6px;
+    padding: 28px 24px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .testimonials__stars {
+    color: var(--color-accent);
+    font-size: 1.125rem;
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+
+  .testimonials__quote {
+    margin: 0;
+  }
+
+  .testimonials__quote p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: #374151;
+    line-height: 1.65;
+    font-style: italic;
+    max-width: none;
+  }
+
+  .testimonials__reviewer {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .testimonials__name {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .testimonials__city {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+
+  .testimonials__cta {
+    text-align: center;
+    margin-top: var(--space-4);
+  }
+
+  .testimonials__reviews-link {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-primary-light);
+    text-decoration: underline;
+    transition: color 150ms ease;
+  }
+
+  .testimonials__reviews-link:hover {
+    color: var(--color-primary);
+  }
+</style>

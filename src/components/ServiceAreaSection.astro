@@ -1,0 +1,195 @@
+---
+interface City {
+  name: string;
+  slug: string;
+}
+
+interface Props {
+  cities?: City[];
+  headline?: string;
+  intro?: string;
+  showMap?: boolean;
+}
+
+const defaultCities: City[] = [
+  { name: 'Vacaville', slug: 'vacaville' },
+  { name: 'Fairfield', slug: 'fairfield' },
+  { name: 'Dixon', slug: 'dixon' },
+  { name: 'Napa', slug: 'napa' },
+  { name: 'Vallejo', slug: 'vallejo' },
+  { name: 'Woodland', slug: 'woodland' },
+  { name: 'Davis', slug: 'davis' },
+  { name: 'Winters', slug: 'winters' },
+];
+
+const {
+  cities = defaultCities,
+  headline = 'We Come to You — Same-Day Service Across the Region',
+  intro = 'Vacaville Plumbing serves homeowners and businesses within 30 miles of Vacaville. Same licensed plumber, same upfront pricing, same fast response — wherever you are.',
+  showMap = true,
+} = Astro.props;
+---
+
+<section class="service-area" aria-labelledby="service-area-heading">
+  <div class="container service-area__inner">
+    <!-- Left: City List -->
+    <div class="service-area__content">
+      <h2 id="service-area-heading" class="service-area__headline">{headline}</h2>
+      <p class="service-area__intro">{intro}</p>
+
+      <ul class="service-area__cities" aria-label="Cities we serve">
+        {cities.map((city) => (
+          <li class="service-area__city-item">
+            <a href={`/service-areas/${city.slug}`} class="service-area__city-link">
+              {city.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <a href="/service-areas" class="service-area__all-link">
+        View All Service Areas →
+      </a>
+    </div>
+
+    <!-- Right: Map -->
+    {showMap && (
+      <div class="service-area__map-wrap">
+        <div class="service-area__map-placeholder" role="img" aria-label="Service area map — Vacaville CA and surrounding cities">
+          <!-- TODO: Replace with Google Maps embed after client provides API key -->
+          <div class="service-area__map-placeholder-content">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--color-text-muted);">
+              <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/>
+              <line x1="9" x2="9" y1="3" y2="18"/>
+              <line x1="15" x2="15" y1="6" y2="21"/>
+            </svg>
+            <p>Service Area Map</p>
+            <p class="service-area__map-cities">Vacaville · Fairfield · Dixon · Napa · Vallejo · Woodland · Davis · Winters</p>
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .service-area {
+    background: var(--color-bg-section);
+    padding: var(--space-12) 0;
+  }
+
+  .service-area__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  @media (min-width: 768px) {
+    .service-area__inner {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+  }
+
+  .service-area__headline {
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .service-area__intro {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text);
+    line-height: 1.65;
+    margin-bottom: var(--space-3);
+    max-width: none;
+  }
+
+  .service-area__cities {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--space-3);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-1) var(--space-3);
+  }
+
+  .service-area__city-item {
+    display: flex;
+    align-items: center;
+  }
+
+  .service-area__city-item::before {
+    content: '→';
+    color: var(--color-accent);
+    margin-right: 6px;
+    flex-shrink: 0;
+    font-size: 0.875rem;
+  }
+
+  .service-area__city-link {
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-primary-light);
+    text-decoration: underline;
+    transition: color 150ms ease;
+  }
+
+  .service-area__city-link:hover {
+    color: var(--color-primary);
+  }
+
+  .service-area__all-link {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-decoration: underline;
+    transition: color 150ms ease;
+  }
+
+  .service-area__all-link:hover {
+    color: var(--color-primary-dark);
+  }
+
+  /* Map */
+  .service-area__map-wrap {
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+  }
+
+  .service-area__map-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--color-neutral-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+  }
+
+  .service-area__map-placeholder-content {
+    text-align: center;
+    padding: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .service-area__map-placeholder-content p {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    max-width: none;
+    margin: 0;
+  }
+
+  .service-area__map-cities {
+    font-size: 0.75rem !important;
+    color: var(--color-neutral-700) !important;
+  }
+</style>

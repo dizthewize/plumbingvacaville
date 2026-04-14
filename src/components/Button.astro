@@ -1,0 +1,122 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  href?: string;
+  size?: 'sm' | 'md' | 'lg';
+  ariaLabel?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  href,
+  size = 'md',
+  ariaLabel,
+  type = 'button',
+  disabled = false,
+  class: className,
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+---
+
+{href ? (
+  <a
+    href={href}
+    class={`btn btn--${variant} btn--${size} ${className ?? ''}`}
+    aria-label={ariaLabel}
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    type={type}
+    class={`btn btn--${variant} btn--${size} ${className ?? ''}`}
+    aria-label={ariaLabel}
+    disabled={disabled}
+  >
+    <slot />
+  </button>
+)}
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+    white-space: nowrap;
+  }
+
+  /* Sizes */
+  .btn--sm {
+    font-size: 0.8125rem;
+    padding: 8px 16px;
+  }
+
+  .btn--md {
+    font-size: 0.9375rem;
+    padding: 12px 28px;
+  }
+
+  .btn--lg {
+    font-size: 1.125rem;
+    padding: 16px 36px;
+  }
+
+  /* Primary */
+  .btn--primary {
+    background: var(--color-accent);
+    color: #ffffff;
+  }
+
+  .btn--primary:hover {
+    background: var(--color-accent-dark);
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .btn--primary:disabled {
+    background: var(--color-neutral-200);
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+  }
+
+  /* Secondary */
+  .btn--secondary {
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+  }
+
+  .btn--secondary:hover {
+    background: #ffffff;
+    color: var(--color-primary);
+    border-color: #ffffff;
+    text-decoration: none;
+  }
+
+  /* Ghost (on light backgrounds) */
+  .btn--ghost {
+    background: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+  }
+
+  .btn--ghost:hover {
+    background: var(--color-primary);
+    color: #ffffff;
+    text-decoration: none;
+  }
+</style>

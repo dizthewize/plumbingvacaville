@@ -1,0 +1,139 @@
+---
+interface Cta {
+  label: string;
+  href: string;
+  ariaLabel?: string;
+}
+
+interface Props {
+  badge?: string;
+  headline?: string;
+  body?: string;
+  primaryCta?: Cta;
+  secondaryCta?: Cta;
+}
+
+const {
+  badge = 'SAME-DAY AVAILABLE',
+  headline = 'Get a Free Estimate — No Obligation, No Surprises',
+  body = "Call us or fill out the form and we'll get back to you same day. We give you an upfront price before any work starts — no hidden fees, no surprise charges.",
+  primaryCta = { label: 'Request My Free Estimate', href: '#lead-form', ariaLabel: 'Request a free plumbing estimate' },
+  secondaryCta = { label: 'Call (916) 612-2126', href: 'tel:9166122126', ariaLabel: 'Call Vacaville Plumbing at (916) 612-2126' },
+} = Astro.props;
+---
+
+<section class="offer-section" aria-labelledby="offer-heading">
+  <div class="container offer-section__inner">
+    <span class="offer-section__badge">{badge}</span>
+    <h2 id="offer-heading" class="offer-section__headline">{headline}</h2>
+    <p class="offer-section__body">{body}</p>
+
+    <div class="offer-section__ctas">
+      <a href={primaryCta.href} class="offer-section__btn-primary" aria-label={primaryCta.ariaLabel}>
+        {primaryCta.label}
+      </a>
+      <a href={secondaryCta.href} class="offer-section__btn-secondary" aria-label={secondaryCta.ariaLabel}>
+        {secondaryCta.label}
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .offer-section {
+    background: var(--color-primary);
+    padding: var(--space-12) 0;
+    text-align: center;
+  }
+
+  .offer-section__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .offer-section__badge {
+    display: inline-block;
+    background: var(--color-accent);
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 6px 16px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+
+  .offer-section__headline {
+    color: #ffffff;
+    margin-bottom: var(--space-2);
+    max-width: 700px;
+  }
+
+  .offer-section__body {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 560px;
+    line-height: 1.65;
+    margin-bottom: var(--space-4);
+  }
+
+  .offer-section__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .offer-section__btn-primary {
+    display: inline-flex;
+    align-items: center;
+    background: var(--color-accent);
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 16px 36px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: background 150ms ease;
+    white-space: nowrap;
+  }
+
+  .offer-section__btn-primary:hover {
+    background: var(--color-accent-dark);
+    text-decoration: none;
+    color: #ffffff;
+  }
+
+  .offer-section__btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 14px 32px;
+    border-radius: 4px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: background 150ms ease, color 150ms ease;
+    white-space: nowrap;
+  }
+
+  .offer-section__btn-secondary:hover {
+    background: #ffffff;
+    color: var(--color-primary);
+    text-decoration: none;
+    border-color: #ffffff;
+  }
+</style>

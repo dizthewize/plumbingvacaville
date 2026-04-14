@@ -1,0 +1,181 @@
+---
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  faqs?: FAQ[];
+  headline?: string;
+}
+
+const defaultFaqs: FAQ[] = [
+  {
+    question: 'Do you offer same-day service?',
+    answer: 'Yes — we offer same-day appointments for most plumbing services in Vacaville and surrounding areas. Call us at (916) 612-2126 and we\'ll do our best to get to you the same day.',
+  },
+  {
+    question: 'Do you give upfront pricing?',
+    answer: 'Always. We give you a flat-rate price before we start any work. No surprise charges, no hidden fees. If we find additional issues once we\'re inside the walls, we tell you before we proceed.',
+  },
+  {
+    question: 'Are you licensed and insured?',
+    answer: 'Yes. Vacaville Plumbing holds a California C-36 Plumbing Contractor license and carries full liability insurance and workers\' compensation. We can provide proof of insurance on request.',
+  },
+  {
+    question: 'Do you offer emergency plumbing service?',
+    answer: 'We answer emergency calls 24 hours a day, 7 days a week. When you call our emergency line, you reach a real plumber — not voicemail. Call (916) 612-2126 any time.',
+  },
+  {
+    question: 'What areas do you serve?',
+    answer: 'We serve Vacaville and the surrounding region within 30 miles, including Fairfield, Dixon, Napa, Vallejo, Woodland, Davis, and Winters. Call us if you\'re not sure whether your area is covered.',
+  },
+  {
+    question: 'Do you warranty your work?',
+    answer: 'Yes. We stand behind every repair and installation with a parts and labor warranty. Ask your plumber for warranty details on your specific job.',
+  },
+];
+
+const { faqs = defaultFaqs, headline = 'Frequently Asked Questions' } = Astro.props;
+---
+
+<section class="faq" aria-labelledby="faq-heading">
+  <div class="container faq__inner">
+    <h2 id="faq-heading" class="faq__headline">{headline}</h2>
+
+    <dl class="faq__list">
+      {faqs.map((faq, i) => (
+        <div class="faq__item" id={`faq-item-${i}`}>
+          <dt class="faq__question">
+            <button
+              class="faq__toggle"
+              aria-expanded="false"
+              aria-controls={`faq-answer-${i}`}
+              id={`faq-toggle-${i}`}
+            >
+              {faq.question}
+              <svg
+                class="faq__chevron"
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+          </dt>
+          <dd
+            class="faq__answer"
+            id={`faq-answer-${i}`}
+            role="region"
+            aria-labelledby={`faq-toggle-${i}`}
+            hidden
+          >
+            <p>{faq.answer}</p>
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.faq__toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const answerId = btn.getAttribute('aria-controls');
+      const answer = answerId ? document.getElementById(answerId) : null;
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+
+      btn.setAttribute('aria-expanded', String(!isExpanded));
+      if (answer) answer.hidden = isExpanded;
+    });
+  });
+</script>
+
+<style>
+  .faq {
+    background: var(--color-bg);
+    padding: var(--space-12) 0;
+  }
+
+  .faq__inner {
+    max-width: 800px;
+    margin-inline: auto;
+  }
+
+  .faq__headline {
+    text-align: center;
+    color: var(--color-primary);
+    margin-bottom: var(--space-6);
+  }
+
+  .faq__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq__item {
+    border-bottom: 1px solid var(--color-neutral-200);
+  }
+
+  .faq__item:first-child {
+    border-top: 1px solid var(--color-neutral-200);
+  }
+
+  .faq__question {
+    margin: 0;
+  }
+
+  .faq__toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    background: none;
+    border: none;
+    padding: 20px 0;
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    text-align: left;
+    transition: color 150ms ease;
+  }
+
+  .faq__toggle:hover {
+    color: var(--color-accent);
+  }
+
+  .faq__chevron {
+    flex-shrink: 0;
+    color: var(--color-accent);
+    transition: transform 200ms ease;
+  }
+
+  .faq__toggle[aria-expanded="true"] .faq__chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq__answer {
+    padding: 0 0 20px;
+  }
+
+  .faq__answer p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text);
+    line-height: 1.65;
+    max-width: none;
+    margin: 0;
+  }
+</style>
