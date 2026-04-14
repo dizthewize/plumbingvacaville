@@ -1,17 +1,223 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import TrustSignalsBar from '../components/TrustSignalsBar.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import OfferSection from '../components/OfferSection.astro';
+import TestimonialsSection from '../components/TestimonialsSection.astro';
+import ServiceAreaSection from '../components/ServiceAreaSection.astro';
+import FAQAccordion from '../components/FAQAccordion.astro';
+import LeadCaptureForm from '../components/LeadCaptureForm.astro';
 
+const faqs = [
+  {
+    question: 'Do you offer same-day service?',
+    answer: "Yes — we offer same-day appointments for most plumbing services in Vacaville and surrounding areas. Call us at (916) 612-2126 and we'll do our best to get to you the same day.",
+  },
+  {
+    question: 'Do you give upfront pricing?',
+    answer: "Always. We give you a flat-rate price before we start any work. No surprise charges, no hidden fees. If we find additional issues once we're inside the walls, we tell you before we proceed.",
+  },
+  {
+    question: 'Are you licensed and insured?',
+    answer: "Yes. Vacaville Plumbing holds a California C-36 Plumbing Contractor license and carries full liability insurance and workers' compensation. We can provide proof of insurance on request.",
+  },
+  {
+    question: 'Do you offer emergency plumbing service?',
+    answer: "We answer emergency calls 24 hours a day, 7 days a week. When you call our emergency line, you reach a real plumber — not voicemail. Call (916) 612-2126 any time.",
+  },
+  {
+    question: 'What areas do you serve?',
+    answer: "We serve Vacaville and the surrounding region within 30 miles, including Fairfield, Dixon, Napa, Vallejo, Woodland, Davis, and Winters. Call us if you're not sure whether your area is covered.",
+  },
+  {
+    question: 'Do you warranty your work?',
+    answer: 'Yes. We stand behind every repair and installation with a parts and labor warranty. Ask your plumber for warranty details on your specific job.',
+  },
+];
+
+// LocalBusiness JSON-LD schema (homepage only)
+const schema = {
+  "@context": "https://schema.org",
+  "@type": ["LocalBusiness", "Plumber"],
+  "name": "Vacaville Plumbing",
+  "url": "https://www.vacavilleplumbing.com",
+  "telephone": "(916) 612-2126",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Vacaville",
+    "addressRegion": "CA",
+    "addressCountry": "US"
+    // TODO: Add streetAddress and postalCode when client provides
+  },
+  "areaServed": [
+    "Vacaville", "Fairfield", "Dixon", "Napa",
+    "Vallejo", "Woodland", "Davis", "Winters"
+  ],
+  "openingHours": [
+    "Mo-Fr 07:00-18:00",
+    "Sa 08:00-17:00"
+    // TODO: Confirm Sat/Sun hours with client
+  ],
+  "description": "Licensed plumber serving Vacaville, CA and surrounding areas. Same-day service, upfront pricing, 24/7 emergency response. C-36 licensed and insured.",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Plumbing Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Drain Cleaning & Unclogging" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Water Heater Repair & Installation" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Leak Detection & Repair" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pipe Replacement & Repiping" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Emergency Plumbing" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sewer Line Inspection & Repair" } }
+    ]
+  }
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+  title="Vacaville Plumbing — Licensed Plumber in Vacaville, CA"
+  description="Licensed plumber in Vacaville, CA. Same-day service for drain cleaning, water heaters, leaks & more. Upfront pricing, no hidden fees. Call (916) 612-2126 — free estimate available."
+  schema={schema}
+>
+  <!-- Hero -->
+  <HeroSection
+    headline="Vacaville's Trusted Plumber — Same-Day Service, Upfront Pricing"
+    subheadline="Licensed, insured, and ready when you call. No hidden fees. No surprises. Just honest plumbing done right."
+    primaryCta={{ label: 'Get My Free Estimate', href: '#lead-form' }}
+    secondaryCta={{ label: 'Call (916) 612-2126 — Same-Day Slots Available', href: 'tel:9166122126' }}
+    urgencyBadge="Same-Day Appointments Available"
+    showForm={true}
+    formId="hero-form"
+  />
+
+  <!-- Trust Signals -->
+  <TrustSignalsBar variant="dark" />
+
+  <!-- Services Grid -->
+  <ServicesGrid
+    headline="Full-Service Plumbing in Vacaville, CA"
+    subheadline="From emergency repairs to planned installations — we handle it all with upfront pricing."
+  />
+
+  <!-- Irresistible Offer -->
+  <OfferSection
+    badge="SAME-DAY AVAILABLE"
+    headline="Get a Free Estimate — No Obligation, No Surprises"
+    body="Call us or fill out the form and we'll get back to you same day. We give you a flat-rate price before any work starts — no hidden fees, no surprise charges on any job."
+    primaryCta={{ label: 'Request My Free Estimate', href: '#lead-form', ariaLabel: 'Request a free plumbing estimate' }}
+    secondaryCta={{ label: 'Call (916) 612-2126', href: 'tel:9166122126', ariaLabel: 'Call Vacaville Plumbing at (916) 612-2126' }}
+  />
+
+  <!-- Testimonials -->
+  <TestimonialsSection
+    headline="What Vacaville Homeowners Say About Us"
+  />
+
+  <!-- Service Area -->
+  <ServiceAreaSection
+    headline="We Come to You — Serving Vacaville & 30-Mile Radius"
+    intro="Vacaville Plumbing serves homeowners and businesses throughout Vacaville and the surrounding region. Same licensed plumber, same upfront pricing, same fast response — wherever you are."
+    showMap={true}
+  />
+
+  <!-- FAQ -->
+  <FAQAccordion
+    headline="Common Questions About Our Plumbing Services"
+    faqs={faqs}
+  />
+
+  <!-- Final CTA with Lead Form -->
+  <section class="final-cta" aria-labelledby="final-cta-heading">
+    <div class="container final-cta__inner">
+      <div class="final-cta__copy">
+        <h2 id="final-cta-heading" class="final-cta__headline">
+          Ready to Get Your Plumbing Fixed?
+        </h2>
+        <p class="final-cta__body">
+          Same-day appointments available. Emergency service 24/7. Free estimates on most jobs.
+        </p>
+        <a
+          href="tel:9166122126"
+          class="final-cta__phone"
+          aria-label="Call Vacaville Plumbing at (916) 612-2126"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          (916) 612-2126
+        </a>
+      </div>
+      <div class="final-cta__form">
+        <LeadCaptureForm
+          id="lead-form"
+          formTitle="Request Your Free Estimate"
+          submitLabel="Request My Free Estimate"
+        />
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .final-cta {
+    background: var(--color-neutral-50);
+    padding: var(--space-12) 0;
+    border-top: 1px solid var(--color-neutral-200);
+  }
+
+  .final-cta__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .final-cta__inner {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .final-cta__headline {
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .final-cta__body {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    color: var(--color-text);
+    line-height: 1.65;
+    margin-bottom: var(--space-3);
+    max-width: none;
+  }
+
+  .final-cta__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  .final-cta__phone:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .final-cta__phone svg {
+    color: var(--color-accent);
+  }
+
+  .final-cta__form {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    border-radius: 6px;
+    border: 1px solid var(--color-neutral-200);
+  }
+</style>
