@@ -1,0 +1,84 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TrustSignalsBar from '../../components/TrustSignalsBar.astro';
+import LeadCaptureForm from '../../components/LeadCaptureForm.astro';
+---
+
+<Layout
+  title="24/7 Emergency Plumber in Vacaville, CA | Vacaville Plumbing"
+  description="24/7 emergency plumber in Vacaville, CA. Burst pipes, major leaks, no hot water — we respond fast. A real plumber answers every call. (916) 612-2126."
+>
+  <!-- Emergency: phone-first hero (no #lead-form as primary CTA) -->
+  <section class="service-hero service-hero--emergency" aria-label="Emergency plumbing service">
+    <div class="container service-hero__inner">
+      <span class="service-hero__badge">Emergency Line — Available 24/7</span>
+      <h1 class="service-hero__headline">24/7 Emergency Plumber in Vacaville, CA</h1>
+      <p class="service-hero__sub">Burst pipe. Flooding. No hot water. Call us right now — we answer every time.</p>
+      <p class="service-hero__body">
+        Plumbing emergencies don't wait for business hours. Vacaville Plumbing answers emergency calls 24 hours
+        a day, 7 days a week. When you call, you reach a real plumber — not a voicemail. We'll tell you what to
+        do to minimize damage until we arrive.
+      </p>
+      <p class="service-hero__supporting">
+        Common emergencies we handle: burst pipes, major leaks, sewer backups, gas line concerns, water heater
+        failures, and flooding. If you're not sure whether it's an emergency — call us. We'd rather you call and
+        find out it can wait than wait and have it get worse.
+      </p>
+      <div class="service-hero__ctas">
+        <!-- Phone is primary CTA for emergency page -->
+        <a href="tel:9166122126" class="service-hero__cta-primary" aria-label="Call Vacaville Plumbing emergency line at (916) 612-2126">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call (916) 612-2126 Now
+        </a>
+        <a href="#lead-form" class="service-hero__cta-secondary">Get a Free Estimate</a>
+      </div>
+    </div>
+  </section>
+
+  <TrustSignalsBar />
+
+  <!-- Emergency final CTA — phone first -->
+  <section class="emergency-cta" aria-labelledby="emergency-cta-heading">
+    <div class="container emergency-cta__inner">
+      <div class="emergency-cta__copy">
+        <h2 id="emergency-cta-heading">Plumbing Emergency? Don't Wait.</h2>
+        <p>Call now. A real plumber answers every time — 24 hours a day, 7 days a week.</p>
+        <a href="tel:9166122126" class="emergency-cta__phone" aria-label="Call Vacaville Plumbing emergency line now at (916) 612-2126">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (916) 612-2126
+        </a>
+      </div>
+      <div class="emergency-cta__form">
+        <LeadCaptureForm
+          id="lead-form"
+          formTitle="Not an Emergency? Get a Free Estimate"
+          submitLabel="Request My Free Estimate"
+        />
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .service-hero { background: var(--color-primary); padding: var(--space-12) 0; }
+  .service-hero--emergency { background: #0f2338; }
+  .service-hero__inner { display: flex; flex-direction: column; gap: var(--space-2); max-width: 800px; }
+  .service-hero__badge { display: inline-block; background: var(--color-accent); color: #fff; font-family: var(--font-display); font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; padding: 6px 16px; border-radius: 2px; margin-bottom: 12px; }
+  .service-hero__headline { color: #ffffff; }
+  .service-hero__sub { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: rgba(255,255,255,.9); max-width: none; }
+  .service-hero__body, .service-hero__supporting { font-family: var(--font-body); font-size: 1rem; color: rgba(255,255,255,.8); line-height: 1.65; max-width: 680px; }
+  .service-hero__ctas { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-2); }
+  .service-hero__cta-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--color-accent); color: #fff; font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; text-decoration: none; padding: 16px 36px; border-radius: 4px; text-transform: uppercase; letter-spacing: .04em; transition: background 150ms ease; }
+  .service-hero__cta-primary:hover { background: var(--color-accent-dark); text-decoration: none; color: #fff; }
+  .service-hero__cta-secondary { display: inline-flex; align-items: center; background: transparent; color: #fff; font-family: var(--font-display); font-size: .9375rem; font-weight: 700; text-decoration: none; padding: 12px 24px; border-radius: 4px; border: 2px solid rgba(255,255,255,.6); text-transform: uppercase; letter-spacing: .04em; transition: background 150ms ease, color 150ms ease; }
+  .service-hero__cta-secondary:hover { background: #fff; color: var(--color-primary); text-decoration: none; }
+  .emergency-cta { background: var(--color-neutral-50); padding: var(--space-12) 0; border-top: 1px solid var(--color-neutral-200); }
+  .emergency-cta__inner { display: grid; grid-template-columns: 1fr; gap: var(--space-6); align-items: center; }
+  @media (min-width: 1024px) { .emergency-cta__inner { grid-template-columns: 1fr 1fr; } }
+  .emergency-cta__copy h2 { color: var(--color-primary); margin-bottom: var(--space-2); }
+  .emergency-cta__copy p { font-size: 1rem; color: var(--color-text); line-height: 1.65; margin-bottom: var(--space-3); }
+  .emergency-cta__phone { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--color-accent); text-decoration: none; transition: opacity 150ms ease; }
+  .emergency-cta__phone:hover { opacity: .85; text-decoration: none; }
+  .emergency-cta__phone svg { color: var(--color-accent); }
+  .emergency-cta__form { box-shadow: 0 4px 24px rgba(0,0,0,.08); border-radius: 6px; border: 1px solid var(--color-neutral-200); }
+</style>

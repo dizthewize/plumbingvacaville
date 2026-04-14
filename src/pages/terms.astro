@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Terms of Service | Vacaville Plumbing"
+  description="Terms of service for Vacaville Plumbing. Use of our website and services."
+>
+  <section class="legal-hero" aria-label="Terms of service">
+    <div class="container">
+      <h1 class="legal-hero__headline">Terms of Service</h1>
+      <p class="legal-hero__meta">Last updated: April 2026</p>
+    </div>
+  </section>
+
+  <section class="legal-content" aria-labelledby="terms-content">
+    <div class="container legal-content__inner">
+      <h2 id="terms-content" class="sr-only">Terms of Service Content</h2>
+
+      <h2>Use of This Website</h2>
+      <p>By using the Vacaville Plumbing website, you agree to these terms. This site is provided for informational purposes and to facilitate service requests.</p>
+
+      <h2>Service Requests</h2>
+      <p>Submitting a form on our website does not constitute a binding service agreement. All services are subject to a separate written estimate and your approval before work begins.</p>
+
+      <h2>Accuracy of Information</h2>
+      <p>We make reasonable efforts to ensure the information on this site is accurate and up to date. Prices, availability, and service offerings may change without notice.</p>
+
+      <h2>Limitation of Liability</h2>
+      <p>Vacaville Plumbing is not liable for any damages arising from your use of this website or reliance on information contained herein beyond the scope of applicable law.</p>
+
+      <h2>Intellectual Property</h2>
+      <p>All content on this site, including text, images, and design, is the property of Vacaville Plumbing and may not be reproduced without written permission.</p>
+
+      <h2>Changes to These Terms</h2>
+      <p>We reserve the right to update these terms at any time. Continued use of the site after changes constitutes acceptance of the updated terms.</p>
+
+      <h2>Contact Us</h2>
+      <p>If you have questions about these terms, please contact us at <a href="tel:9166122126">(916) 612-2126</a> or visit our <a href="/contact">contact page</a>.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-hero { background: var(--color-primary); padding: var(--space-8) 0; }
+  .legal-hero__headline { color: #fff; }
+  .legal-hero__meta { color: rgba(255,255,255,.7); font-size: .875rem; margin-top: 8px; }
+  .legal-content { padding: var(--space-12) 0; background: #fff; }
+  .legal-content__inner { max-width: 720px; }
+  .legal-content__inner h2 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--color-primary); margin-top: var(--space-6); margin-bottom: var(--space-2); }
+  .legal-content__inner p { font-size: 1rem; color: var(--color-text); line-height: 1.75; margin-bottom: var(--space-3); }
+  .legal-content__inner a { color: var(--color-accent); }
+</style>

@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Privacy Policy | Vacaville Plumbing"
+  description="Privacy policy for Vacaville Plumbing. How we collect, use, and protect your information."
+>
+  <section class="legal-hero" aria-label="Privacy policy">
+    <div class="container">
+      <h1 class="legal-hero__headline">Privacy Policy</h1>
+      <p class="legal-hero__meta">Last updated: April 2026</p>
+    </div>
+  </section>
+
+  <section class="legal-content" aria-labelledby="privacy-content">
+    <div class="container legal-content__inner">
+      <h2 id="privacy-content" class="sr-only">Privacy Policy Content</h2>
+
+      <h2>Information We Collect</h2>
+      <p>When you use our website or contact us, we may collect information you provide directly, such as your name, phone number, email address, and the details of your plumbing request.</p>
+
+      <h2>How We Use Your Information</h2>
+      <p>We use the information you provide to respond to your service requests, schedule appointments, and communicate with you about your plumbing needs. We do not sell your personal information to third parties.</p>
+
+      <h2>Contact Form Data</h2>
+      <p>Information submitted through our contact and estimate forms is used solely to respond to your inquiry and provide the requested service.</p>
+
+      <h2>Cookies</h2>
+      <p>Our website may use cookies and similar technologies to improve your browsing experience. You can disable cookies through your browser settings.</p>
+
+      <h2>Third-Party Services</h2>
+      <p>We may use third-party services such as analytics providers. These providers have their own privacy policies governing the use of information submitted to them.</p>
+
+      <h2>Data Security</h2>
+      <p>We take reasonable measures to protect the information you provide to us. However, no method of transmission over the internet is 100% secure.</p>
+
+      <h2>Contact Us</h2>
+      <p>If you have questions about this privacy policy, please contact us at <a href="tel:9166122126">(916) 612-2126</a> or visit our <a href="/contact">contact page</a>.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal-hero { background: var(--color-primary); padding: var(--space-8) 0; }
+  .legal-hero__headline { color: #fff; }
+  .legal-hero__meta { color: rgba(255,255,255,.7); font-size: .875rem; margin-top: 8px; }
+  .legal-content { padding: var(--space-12) 0; background: #fff; }
+  .legal-content__inner { max-width: 720px; }
+  .legal-content__inner h2 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--color-primary); margin-top: var(--space-6); margin-bottom: var(--space-2); }
+  .legal-content__inner p { font-size: 1rem; color: var(--color-text); line-height: 1.75; margin-bottom: var(--space-3); }
+  .legal-content__inner a { color: var(--color-accent); }
+</style>

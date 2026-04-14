@@ -1,0 +1,192 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServicesGrid from '../../components/ServicesGrid.astro';
+import TrustSignalsBar from '../../components/TrustSignalsBar.astro';
+import OfferSection from '../../components/OfferSection.astro';
+import LeadCaptureForm from '../../components/LeadCaptureForm.astro';
+---
+
+<Layout
+  title="Plumbing Services in Vacaville, CA | Vacaville Plumbing"
+  description="Full-service plumbing in Vacaville, CA. Drain cleaning, water heaters, repiping, sewer line, emergency service & more. Upfront pricing. Call (916) 612-2126 today."
+>
+  <!-- Page Hero -->
+  <section class="inner-hero" aria-label="Services overview">
+    <div class="container inner-hero__inner">
+      <h1 class="inner-hero__headline">Plumbing Services in Vacaville, CA</h1>
+      <p class="inner-hero__sub">
+        Licensed plumbing for homeowners and businesses throughout Vacaville and the surrounding region.
+        Same-day appointments available. Upfront pricing on every job.
+      </p>
+      <div class="inner-hero__ctas">
+        <a href="tel:9166122126" class="inner-hero__cta-primary" aria-label="Call Vacaville Plumbing at (916) 612-2126">
+          Call (916) 612-2126
+        </a>
+        <a href="#lead-form" class="inner-hero__cta-secondary">
+          Get a Free Estimate
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <TrustSignalsBar />
+
+  <ServicesGrid
+    headline="All Plumbing Services"
+    subheadline="From routine maintenance to emergency repairs — licensed, insured, and upfront on every job."
+  />
+
+  <OfferSection />
+
+  <!-- Lead Form -->
+  <section class="inner-form" aria-labelledby="contact-form-heading">
+    <div class="container inner-form__inner">
+      <div class="inner-form__copy">
+        <h2 id="contact-form-heading">Get Your Free Estimate</h2>
+        <p>Tell us what's going on. We'll get back to you quickly with a free estimate and our earliest available time.</p>
+        <a href="tel:9166122126" class="inner-form__phone" aria-label="Call Vacaville Plumbing at (916) 612-2126">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (916) 612-2126
+        </a>
+      </div>
+      <div class="inner-form__form">
+        <LeadCaptureForm id="lead-form" />
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .inner-hero {
+    background: var(--color-primary);
+    padding: var(--space-12) 0;
+  }
+
+  .inner-hero__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .inner-hero__headline {
+    color: #ffffff;
+  }
+
+  .inner-hero__sub {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 600px;
+    line-height: 1.65;
+  }
+
+  .inner-hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-items: center;
+  }
+
+  .inner-hero__cta-primary {
+    display: inline-flex;
+    align-items: center;
+    background: var(--color-accent);
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 14px 32px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: background 150ms ease;
+  }
+
+  .inner-hero__cta-primary:hover {
+    background: var(--color-accent-dark);
+    text-decoration: none;
+    color: #ffffff;
+  }
+
+  .inner-hero__cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    color: #ffffff;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 4px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: background 150ms ease, color 150ms ease;
+  }
+
+  .inner-hero__cta-secondary:hover {
+    background: #ffffff;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+
+  .inner-form {
+    background: var(--color-neutral-50);
+    padding: var(--space-12) 0;
+    border-top: 1px solid var(--color-neutral-200);
+  }
+
+  .inner-form__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .inner-form__inner {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .inner-form__copy h2 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .inner-form__copy p {
+    font-size: 1rem;
+    color: var(--color-text);
+    line-height: 1.65;
+    margin-bottom: var(--space-3);
+  }
+
+  .inner-form__phone {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+
+  .inner-form__phone:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .inner-form__phone svg {
+    color: var(--color-accent);
+  }
+
+  .inner-form__form {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    border-radius: 6px;
+    border: 1px solid var(--color-neutral-200);
+  }
+</style>
